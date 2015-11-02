@@ -7,40 +7,44 @@
 //
 
 #import "ViewController.h"
+#import "MyScrollView.h"
 
 @interface ViewController ()
 
 @property (nonatomic) UIView *                mainView;
-@property (nonatomic) UIView *                redBox;
+@property (nonatomic) MyScrollView*           scrollView;
 
 @end
+
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    self.mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
-    self.mainView.backgroundColor = [UIColor whiteColor];
+    //
+    //    self.mainView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame))];
+
+    self.scrollView = [[MyScrollView alloc] initWithFrame:self.view.bounds];
+    self.scrollView.contentSize = CGSizeMake(self.view.bounds.size.width, 1000);
+//    self.scrollView.scrollHorizontal = NO;
     
     UIView *redView = [[UIView alloc] initWithFrame:CGRectMake(20, 20, 100, 100)];
-    redView.backgroundColor = [UIColor redColor];
-    [self.mainView addSubview:redView];
-    
     UIView *greenView = [[UIView alloc] initWithFrame:CGRectMake(150, 150, 150, 200)];
-    greenView.backgroundColor = [UIColor greenColor];
-    [self.mainView addSubview:greenView];
-    
     UIView *blueView = [[UIView alloc] initWithFrame:CGRectMake(40, 400, 200, 150)];
-    blueView.backgroundColor = [UIColor blueColor];
-    [self.mainView addSubview:blueView];
-    
     UIView *yellowView = [[UIView alloc] initWithFrame:CGRectMake(100, 600, 180, 150)];
-    yellowView.backgroundColor = [UIColor yellowColor];
-    [self.mainView addSubview:yellowView];
     
-    [self.view addSubview:self.mainView];
+    redView.backgroundColor = [UIColor redColor];
+    greenView.backgroundColor = [UIColor greenColor];
+    blueView.backgroundColor = [UIColor blueColor];
+    yellowView.backgroundColor = [UIColor yellowColor];
+    self.mainView.backgroundColor = [UIColor whiteColor];
+    
+    [self.scrollView addSubview:redView];
+    [self.scrollView addSubview:greenView];
+    [self.scrollView addSubview:blueView];
+    [self.scrollView addSubview:yellowView];
+    [self.view addSubview:self.scrollView];
 
     
     
